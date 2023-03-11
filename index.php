@@ -119,7 +119,7 @@
                             <h3>Starters</h3>
                         </div>
 
-                        <div class="row gy-5">
+                        <div class="row gy-5" id="recipes-list">
 
                             <div class="col-lg-4 menu-item">
                                 <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
@@ -349,7 +349,7 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
 
-                <form class="modal-body">
+                <form class="modal-body" id="filter-form">
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
@@ -371,7 +371,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <?php $sql = "select * from ingredients where type='alergic'";
+                            <?php $sql = "select * from ingredients where type='allergic'";
                             $result = $conn->query($sql);
                             if ($result && $result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
@@ -381,7 +381,7 @@
                                             <div class="w-100">
                                                 <label class="container">
                                                     <h3 class="mb-0"><?= $row["name"]; ?></h3>
-                                                    <input type="checkbox" class="chk">
+                                                    <input type="checkbox" class="chk" data-id="<?= $row["id"]; ?>">
                                                     <span class="checkmark bi flex-shrink-0"></span>
                                                 </label>
 
@@ -417,7 +417,21 @@
             $(".chk").each(function(){
                 $(this).prop("checked",checked);
             })
-        })
+        });
+        $("#filter-form").on("submit",function(e){
+            e.preventDefault();
+            let ids = [];
+            $(".chk:checked").each(function(){
+                ids.push($(this).data("id"));
+            });
+            debugger
+            loadRecipes(ids.join(','));
+        });
+        function loadRecipes(ids){
+            $("#recipes-list").load("partials/reciepes.partial.php?ids="+ids,function(){
+
+            });
+        }
         var alergicModal = new bootstrap.Modal(document.getElementById('alergicModal'))
         alergicModal.show();
     </script>

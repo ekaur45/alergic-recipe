@@ -11,133 +11,106 @@
 
 <body>
     <?php include_once "partials/data.partial.php"; ?>
-    <div class="container">
-        <form class="form" action="actions/recipe/add-recipe.action.php" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mt-3">
-                        <div class="card-header">Add Recipe</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Name</label>
-                                        <input type="text" name="recipe-name" id="recipe-name" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="control-label">Photo</label>
-                                        <input type="file" name="theFile" class="form-control">
-                                    </div>
-                                </div>
+    <main id="main" style="padding-top: 100px;">
+
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link " id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Ingredients</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Recipe</button>
+                </li>
+                <!-- <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-contact" type="button" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</button>
+                </li> -->
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <div>
+                        <?php include_once "./partials/add-ingredient.partial.php"; ?>
+                        <div class="row">
+                            <div class="col-md-12 overflow-auto" id="ingredient-container">
+
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-success">
-                                <i class="bi bi-plus"></i>
-                                Add</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-        <form action="actions/recipe/add-ingredients.acion.php" method="post">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card mt-3">
-                        <div class="card-header">Add Recipe</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group mb-3">
-                                        <label class="control-label">Recipe</label>
-                                        <?php
-                                        include_once "inc/db/connection.php";
-                                        $sql = "select * from recipe;";
-                                        $recipesResult = $conn->query($sql);
-                                        ?>
-                                        <select name="recipe_id" id="" class="form-select">
-                                            <?php
-                                            if ($recipesResult->num_rows > 0) {
-                                                while ($row = $recipesResult->fetch_assoc()) {
-                                            ?>
-                                                    <option value="<?php echo $row["id"] ?>"><?php echo $row["name"] ?></option>
-                                            <?php }
-                                            } ?>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                <!-- <input
-        type="text"
-        class="form-control p-4"
-        data-role="tagsinput"
-      /> -->
-                                    <header class="mb-3">Ingredient</header>
-                                    <div id="normal-ingredients-container" class="mb-3">
-                                            <div class="alert alert-info w-100">
-                                                No Ingredients Added Yet
-                                            </div>
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <label class="control-label"></label>
-                                        <div class="input-group">
-                                            <input type="text" id="normal-ind" class="form-control">
-                                            <div class="input-group-text" id="normal-add"><i class="bi bi-plus-lg"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <header class="mb-3">Method</header>
-                                    <div id="clean-ingredients-container" class="mb-3">
-                                    </div>
-                                    <div class="form-group mb-3">
-                                        <div class="input-group">
-                                            <input type="text" id="clean-ind" class="form-control">
-                                            <div class="input-group-text" id="clean-add"><i class="bi bi-plus-lg"></i></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button class="btn btn-success">  <i class="bi bi-plus"></i> Add</button>
-                        </div>
-                    </div>
+                <div class="tab-pane fade show active" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <?php include_once "./partials/add-recipe.partial.php"?>
                 </div>
             </div>
-        </form>
 
-        <?php include_once "inc/shared/footer.php"; ?>
+            <?php include_once "inc/shared/footer.php"; ?>
 
-        <script>
-            $("#normal-add").on("click", function() {
-                var __val = $("#normal-ind").val();
+            <script>
+                function loadIngredients() {
+                    // $("#ingredient-container").load("./partials/ingredients.partial.php", function() {
+                    //     console.log("========", " DATA LOADED ", "========")
+                    // });
+                }
+                $(document).ready(function() {
 
-                $("#normal-ingredients-container").append(`    <div class="input-group">
-                                            <input type="text" name="normal[]" readonly="readonly"  value='${__val}' class="form-control">
-                                            <div class="input-group-text normal-remove" id=""><i class="bi bi-trash-fill"></i></div>
-                                        </div>`);
-                $("#normal-ind").val('')
-                $(".normal-remove").on("click", removeParentDiv)
-            });
-            $("#clean-add").on("click", function() {
-                var __val = $("#clean-ind").val();
-                $("#clean-ingredients-container").append(`    <div class="input-group">
-                                            <input type="text" name="clean[]" readonly="readonly"  value='${__val}' class="form-control">
-                                            <div class="input-group-text clean-remove" id=""><i class="bi bi-trash-fill"></i></div>
-                                        </div>`);
-                $("#clean-ind").val('')
-                $(".clean-remove").on("click", removeParentDiv)
-            });
+                    loadIngredients();
+                    $("#add-ingredient-form").on("submit", function(e) {
+                        e.preventDefault();
+                        $.ajax({
+                            url: e.target.action,
+                            method: e.target.method,
+                            data: $(e.target).serialize(),
+                            success: function() {
+                                loadIngredients();
+                                e.target.reset();
+                            },
+                            error: function() {}
+                        })
+                    })
 
-            function removeParentDiv() {
-                $(this).parent().remove();
-                $(".clean-remove").on("click", removeParentDiv)
-            }
-        </script>
-    </div>
+                    $("#add-recipe-form").on("submit",function(e){
+                        e.preventDefault();
+                        let ids = [];
+                        $("#destination li").each(function(){                            
+                            ids.push($(this).data("id"));
+                        });
+                        $("#ids").val(ids.join(','));
+                        $.ajax({
+                            url: e.target.action,
+                            method: e.target.method,
+                            data: new FormData(e.target),
+                            cache: false,
+    contentType: false,
+    processData: false,
+                            success: function() {
+                                loadIngredients();
+                                e.target.reset();
+                            },
+                            error: function() {}
+                        })
+                    })
+                    $(".source-item").on("click",onIngClick);
+                    $(".destination-item").on("click",onDestClick);
+                })
+                function onDestClick(e){
+                    if(!e.currentTarget) return;
+                    e.currentTarget.classList.add("source-item");
+                    e.currentTarget.classList.remove("destination-item");
+                    $("#source").append(e.currentTarget);
+                    $("#destination").remove(e.currentTarget);
+                    $(".source-item").on("click",onIngClick);
+                    $(".destination-item").on("click",onDestClick);
+                }
+                function onIngClick(e){
+                    if(!e.currentTarget) return;
+                    e.currentTarget.classList.remove("source-item");
+                    e.currentTarget.classList.add("destination-item");
+                    $("#destination").append(e.currentTarget);
+                    $("#source").remove(e.currentTarget);
+                    $(".source-item").on("click",onIngClick);
+                    $(".destination-item").on("click",onDestClick);
+                }
+            </script>
+        </div>
+    </main>
 </body>
 
 </html>
