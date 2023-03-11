@@ -87,7 +87,7 @@
 
                     <li class="nav-item d-none">
                         <a class="nav-link active show d-none" data-bs-toggle="tab" data-bs-target="#menu-starters">
-                            <h4>Starters</h4>
+                            <!-- <h4>Starters</h4> -->
                         </a>
                     </li><!-- End tab nav item -->
 
@@ -116,76 +116,12 @@
 
                         <div class="tab-header text-center">
                             <p>Menu</p>
-                            <h3>Starters</h3>
+                            <!-- <h3>Starters</h3> -->
                         </div>
 
                         <div class="row gy-5" id="recipes-list">
 
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-1.png" class="glightbox"><img src="assets/img/menu/menu-item-1.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Magnam Tiste</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $5.95
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-2.png" class="glightbox"><img src="assets/img/menu/menu-item-2.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Aut Luia</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $14.95
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-3.png" class="glightbox"><img src="assets/img/menu/menu-item-3.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Est Eligendi</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $8.95
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-4.png" class="glightbox"><img src="assets/img/menu/menu-item-4.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Eos Luibusdam</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $12.95
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-5.png" class="glightbox"><img src="assets/img/menu/menu-item-5.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Eos Luibusdam</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $12.95
-                                </p>
-                            </div><!-- Menu Item -->
-
-                            <div class="col-lg-4 menu-item">
-                                <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img src="assets/img/menu/menu-item-6.png" class="menu-img img-fluid" alt=""></a>
-                                <h4>Laboriosam Direva</h4>
-                                <p class="ingredients">
-                                    Lorem, deren, trataro, filede, nerada
-                                </p>
-                                <p class="price">
-                                    $9.95
-                                </p>
-                            </div><!-- Menu Item -->
+                           
 
                         </div>
                     </div>
@@ -405,35 +341,43 @@
 
     <?php include_once "inc/shared/footer.php"; ?>
     <script>
+        
+        
         $(".add-to-grocery").on("click", function() {
             let __id = $(this).data("id");
             window.location.href = "actions/recipe/add-to-list.action.php?id=" + __id;
         });
-        $(".chk").on("change",function(){
-            $("#selectall").prop("checked",$(".chk:checked").length == $(".chk").length);
+        $(".chk").on("change", function() {
+            $("#selectall").prop("checked", $(".chk:checked").length == $(".chk").length);
         })
-        $("#selectall").on("change",function(){
+        $("#selectall").on("change", function() {
             let checked = $(this)[0].checked;
-            $(".chk").each(function(){
-                $(this).prop("checked",checked);
+            $(".chk").each(function() {
+                $(this).prop("checked", checked);
             })
         });
-        $("#filter-form").on("submit",function(e){
+        $("#filter-form").on("submit", function(e) {
             e.preventDefault();
             let ids = [];
-            $(".chk:checked").each(function(){
+            $(".chk:checked").each(function() {
                 ids.push($(this).data("id"));
             });
             debugger
             loadRecipes(ids.join(','));
         });
-        function loadRecipes(ids){
-            $("#recipes-list").load("partials/reciepes.partial.php?ids="+ids,function(){
 
+        function loadRecipes(ids) {
+            $("#recipes-list").load("partials/reciepes.partial.php?ids=" + ids, function() {
+                alergicModal.hide();
             });
         }
+        loadRecipes("");
         var alergicModal = new bootstrap.Modal(document.getElementById('alergicModal'))
-        alergicModal.show();
+        $(document).ready(function(){
+            setTimeout(() => {
+                alergicModal.show();
+            }, 1000);
+        })
     </script>
 </body>
 

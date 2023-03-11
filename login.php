@@ -29,6 +29,9 @@
                             <div class="justify-content-center d-flex">
                                 <button class="btn btn-primary" type="submit">Login</button>
                             </div>
+                            <div class="justify-content-center d-flex">
+                                <a href="index.php">Home</a>
+                            </div>
                         </div>
                     </div>
                 </form>
