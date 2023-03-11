@@ -61,7 +61,7 @@ CREATE TABLE `ingredients` (
   `salt` float DEFAULT NULL,
   `type` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,7 @@ CREATE TABLE `ingredients` (
 
 LOCK TABLES `ingredients` WRITE;
 /*!40000 ALTER TABLE `ingredients` DISABLE KEYS */;
-INSERT INTO `ingredients` VALUES (1,'gluten',1,2,1,1,1,1,1,'alergic'),(2,'Crustaceans',1,2,1,1,1,1,1,'alergic'),(3,'eggs',1,2,1,1,1,1,1,'alergic'),(4,'Fish',1,2,1,1,1,1,1,'alergic'),(5,'peanuts',1,2,1,1,1,1,1,'alergic'),(6,'soy',1,2,1,1,1,1,1,'alergic'),(7,'milk',1,2,1,1,1,1,1,'alergic'),(8,'Nuts',1,2,1,1,1,1,1,'alergic'),(9,'celery',1,2,1,1,1,1,1,'alergic'),(10,'Mustard',1,2,1,1,1,1,1,'alergic'),(11,'Sesame seeds',1,2,1,1,1,1,1,'alergic'),(12,'Sulfur dioxide and sulphites',1,2,1,1,1,1,1,'alergic'),(13,'sweet lupins',1,2,1,1,1,1,1,'alergic'),(14,'Molluscs',1,2,1,1,1,1,1,'alergic');
+INSERT INTO `ingredients` VALUES (1,'gluten',1,2,1,1,1,1,1,'Allergic'),(2,'Crustaceans',1,2,1,1,1,1,1,'Allergic'),(3,'eggs',1,2,1,1,1,1,1,'Allergic'),(4,'Fish',1,2,1,1,1,1,1,'Allergic'),(5,'peanuts',1,2,1,1,1,1,1,'Allergic'),(6,'soy',1,2,1,1,1,1,1,'Allergic'),(7,'milk',1,2,1,1,1,1,1,'Allergic'),(8,'Nuts',1,2,1,1,1,1,1,'Allergic'),(9,'celery',1,2,1,1,1,1,1,'Allergic'),(10,'Mustard',1,2,1,1,1,1,1,'Allergic'),(11,'Sesame seeds',1,2,1,1,1,1,1,'Allergic'),(12,'Sulfur dioxide and sulphites',1,2,1,1,1,1,1,'Allergic'),(13,'sweet lupins',1,2,1,1,1,1,1,'Allergic'),(14,'Molluscs',1,2,1,1,1,1,1,'Allergic'),(15,'asdf',2323,4,334,4,44,4,4,'Non-allergic'),(16,'sadfasd',1,1,1,1,1,1,1,'Non-allergic');
 /*!40000 ALTER TABLE `ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,9 +86,9 @@ CREATE TABLE `recipe` (
   `name` varchar(500) DEFAULT NULL,
   `userId` int DEFAULT NULL,
   `file` varchar(500) DEFAULT NULL,
-  `category` varchar(45) DEFAULT NULL,
+  `description` varchar(500) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `recipe` (
 
 LOCK TABLES `recipe` WRITE;
 /*!40000 ALTER TABLE `recipe` DISABLE KEYS */;
-INSERT INTO `recipe` VALUES (4,'New recipe',NULL,'uploads/abc.jpg',NULL);
+INSERT INTO `recipe` VALUES (13,'dsafadsfasdf',NULL,'uploads/abc.jpg','dsafjklhadsjkh kjhdfjk ahdsjkfh kjsdf kjds'),(16,'asdfksdajkl',NULL,'uploads/abc.jpg','dsafjklhadsjkh kjhdfjk ahdsjkfh kjsdf kjds');
 /*!40000 ALTER TABLE `recipe` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `recipe_ingredients` (
   `recipe_id` int DEFAULT NULL,
   `ingredient_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,8 +122,13 @@ CREATE TABLE `recipe_ingredients` (
 
 LOCK TABLES `recipe_ingredients` WRITE;
 /*!40000 ALTER TABLE `recipe_ingredients` DISABLE KEYS */;
+INSERT INTO `recipe_ingredients` VALUES (1,13,1),(2,13,4),(3,13,15),(4,13,16),(5,16,2),(6,16,1),(7,16,5),(8,16,15),(9,16,16);
 /*!40000 ALTER TABLE `recipe_ingredients` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'recipe_new'
+--
 
 --
 -- Dumping routines for database 'recipe_new'
@@ -138,4 +143,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-11  4:12:26
+-- Dump completed on 2023-03-12  4:18:50
