@@ -11,7 +11,7 @@ if($result->num_rows>0){
     if($_user["password"] == $_password){
         $_SESSION["LOGGED_IN"] = $_user["id"];
         $_SESSION["ERROR"] = __createNotification("Login successful.","Success");
-        header("Location: ../../");
+        header("Location: ../../add.recipe.php");
         return;
     }
 }

@@ -21,7 +21,7 @@
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <div class="d-flex w-100">
+                        <div class="d-flex w-100 mb-3">
                             <div class="w-100">
                                 <label>Ingredients</label>
                                 <?php $ings = __select("SELECT * FROM ingredients;") ?>

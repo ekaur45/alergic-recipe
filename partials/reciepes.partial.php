@@ -56,8 +56,8 @@ for ($i = 0; $i < sizeof($result); $i++) {
         <p class="ingredients">
             <?= $row["description"] ?>
         </p>
-        <p>
-            <?= $row["ingName"] ?>
+        <p class="ingredients">
+            <span class="ingredient-items">Ingredients: </span> <?= $row["ingName"] ?>
         </p>
         <p class="price">
         <table class="table table-bordered">

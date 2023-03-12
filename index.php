@@ -121,7 +121,7 @@
 
                         <div class="row gy-5" id="recipes-list">
 
-                           
+
 
                         </div>
                     </div>
@@ -341,8 +341,6 @@
 
     <?php include_once "inc/shared/footer.php"; ?>
     <script>
-        
-        
         $(".add-to-grocery").on("click", function() {
             let __id = $(this).data("id");
             window.location.href = "actions/recipe/add-to-list.action.php?id=" + __id;
@@ -362,7 +360,6 @@
             $(".chk:checked").each(function() {
                 ids.push($(this).data("id"));
             });
-            debugger
             loadRecipes(ids.join(','));
         });
 
@@ -373,7 +370,7 @@
         }
         loadRecipes("");
         var alergicModal = new bootstrap.Modal(document.getElementById('alergicModal'))
-        $(document).ready(function(){
+        $(document).ready(function() {
             setTimeout(() => {
                 alergicModal.show();
             }, 1000);
