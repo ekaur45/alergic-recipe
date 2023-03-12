@@ -24,6 +24,7 @@ __execute($DELETE_SQL);
 $SQL = "INSERT INTO recipe_ingredients(recipe_id,ingredient_id) values (".join("),(",$arr).")";
 echo $SQL;
 __execute($SQL);
+$_SESSION["ERROR"] = __createNotification("Recipe updated successfuly.","Success");
 echo "DONE";
 //var_dump($_POST);
 //var_dump($_FILES);

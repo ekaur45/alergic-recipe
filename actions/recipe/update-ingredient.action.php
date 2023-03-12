@@ -17,6 +17,6 @@ $sql = "UPDATE `ingredients` SET
 WHERE id = $id";
 echo $sql;
 __execute($sql);
-
+$_SESSION["ERROR"] = __createNotification("Ingredient updated successfuly.","Success");
 echo "DONE";
 header("Location: ../../add.recipe.php");
