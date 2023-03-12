@@ -120,3 +120,11 @@ include_once "../inc/db/connection.php";
     }
     ?>
 </table>
+<script>
+    $(".btn-delete-recipe").on("click", function(e) {
+        let id = $(this).data("id");
+        $.ajax("actions/recipe/delete-recipe.action.php?id=" + id).then(x => {
+            loadRecipe();
+        })
+    })
+</script>

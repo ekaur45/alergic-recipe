@@ -119,18 +119,8 @@
                     $(".source-item").on("click", onIngClick);
                     $(".destination-item").on("click", onDestClick);
                 }
-                $(".btn-delete-recipe").on("click", function(e) {
-                    let id = $(this).data("id");
-                    $.ajax("actions/recipe/delete-recipe.action.php?id=" + id).then(x => {
-                        loadRecipe();
-                    })
-                })
-                $(".btn-delete-ing").on("click", function(e) {
-                    let id = $(this).data("id");
-                    $.ajax("actions/recipe/delete-ing.action.php?id=" + id).then(x => {
-                        loadIngredients();
-                    })
-                })
+
+              
             </script>
         </div>
     </main>

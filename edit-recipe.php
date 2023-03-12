@@ -76,7 +76,7 @@ $row1 = $recipes[0];
                             <div>
                                 <button class="btn btn-primary" type="submit">
                                     <i class="bi bi-plus"></i>
-                                    Add</button>
+                                    Update</button>
                             </div>
                         </div>
                     </div>

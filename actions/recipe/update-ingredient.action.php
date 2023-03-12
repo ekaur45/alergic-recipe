@@ -1,5 +1,6 @@
 <?php
 include_once "../../inc/db/connection.php";
+include_once "../clear-alert.action.php";
 $id =__escape($_POST["id"]);
 $name =__escape($_POST["name"]);
 $energy =__escape($_POST["energy"]);

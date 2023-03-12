@@ -78,13 +78,13 @@ $ingredients = __select($sql);
                         <?= $row["type"]; ?>
                     </td>
                     <td>
-                        <a href="edit-ing.php?id=<?=$row["id"]?>">
-                        <i class="bi bi-pencil-square"></i>
+                        <a href="edit-ing.php?id=<?= $row["id"] ?>">
+                            <i class="bi bi-pencil-square"></i>
                         </a>
-                        <button class="btn btn-delete-ing" data-id="<?=$row["id"]?>">
+                        <button class="btn btn-delete-ing" data-id="<?= $row["id"] ?>">
                             <i class="bi bi-trash"></i>
                         </button>
-                        
+
                     </td>
                 </tr>
         <?php }
@@ -93,5 +93,10 @@ $ingredients = __select($sql);
 </table>
 
 <script>
-  
+    $(".btn-delete-ing").on("click", function(e) {
+        let id = $(this).data("id");
+        $.ajax("actions/recipe/delete-ing.action.php?id=" + id).then(x => {
+            loadIngredients();
+        })
+    })
 </script>
