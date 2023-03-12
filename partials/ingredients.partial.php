@@ -36,6 +36,9 @@ $ingredients = __select($sql);
             <th>
                 Type
             </th>
+            <th>
+                Action
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -45,7 +48,7 @@ $ingredients = __select($sql);
         ?>
                 <tr>
                     <td>
-                        <?=$i+1?>
+                        <?= $i + 1 ?>
                     </td>
                     <td>
                         <?= $row["name"]; ?>
@@ -74,8 +77,21 @@ $ingredients = __select($sql);
                     <td>
                         <?= $row["type"]; ?>
                     </td>
+                    <td>
+                        <a href="edit-ing.php?id=<?=$row["id"]?>">
+                        <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <button class="btn btn-delete-ing" data-id="<?=$row["id"]?>">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                        
+                    </td>
                 </tr>
         <?php }
         } ?>
     </tbody>
 </table>
+
+<script>
+  
+</script>

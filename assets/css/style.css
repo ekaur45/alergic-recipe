@@ -160,7 +160,8 @@ label.container .checkmark:after {
   -webkit-font-smoothing: antialiased;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
   background: var(--color-primary);
   border: 0;
   padding: 14px 60px;
@@ -183,4 +184,10 @@ label.container .checkmark:after {
 .ingredient-items {
   color: black;
   font-weight: 700;
+}
+
+
+.w-54x54 {
+  width: 54px;
+  height: 54px;
 }

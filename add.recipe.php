@@ -35,6 +35,10 @@
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <?php include_once "./partials/add-recipe.partial.php" ?>
+                    <div class="row">
+                        <div class="col-md-12 overflow-auto" id="recipe-container">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -46,9 +50,16 @@
                         console.log("========", " DATA LOADED ", "========")
                     });
                 }
+
+                function loadRecipe() {
+                    $("#recipe-container").load("./partials/recipes-admin.partial.php", function() {
+                        console.log("========", " DATA LOADED ", "========")
+                    });
+                }
                 $(document).ready(function() {
 
                     loadIngredients();
+                    loadRecipe();
                     $("#add-ingredient-form").on("submit", function(e) {
                         e.preventDefault();
                         $.ajax({
@@ -79,6 +90,7 @@
                             processData: false,
                             success: function() {
                                 loadIngredients();
+                                loadRecipe();
                                 e.target.reset();
                             },
                             error: function() {}
@@ -107,6 +119,18 @@
                     $(".source-item").on("click", onIngClick);
                     $(".destination-item").on("click", onDestClick);
                 }
+                $(".btn-delete-recipe").on("click", function(e) {
+                    let id = $(this).data("id");
+                    $.ajax("actions/recipe/delete-recipe.action.php?id=" + id).then(x => {
+                        loadRecipe();
+                    })
+                })
+                $(".btn-delete-ing").on("click", function(e) {
+                    let id = $(this).data("id");
+                    $.ajax("actions/recipe/delete-ing.action.php?id=" + id).then(x => {
+                        loadIngredients();
+                    })
+                })
             </script>
         </div>
     </main>

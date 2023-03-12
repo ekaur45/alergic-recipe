@@ -2,8 +2,8 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "receipe_db";
+$password = "test123";
+$dbname = "recipe_new";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
